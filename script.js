@@ -15,3 +15,12 @@ document.getElementById("resetChanges").addEventListener("click", async function
 
   window.close();
 });
+
+document.getElementById("getParentDiv").addEventListener("click", async function() {
+  console.log("Get Parent Div button clicked. Sending getParentDivMessage.");
+
+  let [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+  chrome.tabs.sendMessage(tab.id, { action: "awaitParentDivSelection" });
+
+  window.close();
+});
